@@ -13,9 +13,7 @@ import java.util.List;
 
 public class Cart {
 
-    ProductRepository productRepository;
-
-    List<Product> products;
+    private List<Product> products;
     private boolean isCartOpen = true;
 
     public Cart(){
@@ -32,8 +30,17 @@ public class Cart {
             System.out.println(p.toString());
         }
     }
+    public Product getProductById(int id){
+        for (Product p:products
+        ) {
+            if (p.getId().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
 
-    public void putProduct(int id){
+    public void putProduct(ProductRepository productRepository, int id){
         Product product = productRepository.getProductById(id);
         if (product!=null){
             products.add(product);
@@ -62,13 +69,7 @@ public class Cart {
     public void setCartOpen(boolean cartOpen) {
         isCartOpen = cartOpen;
     }
-    public ProductRepository getProductRepository() {
-        return productRepository;
-    }
-    @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+
 
     public List<Product> getProducts() {
         return products;

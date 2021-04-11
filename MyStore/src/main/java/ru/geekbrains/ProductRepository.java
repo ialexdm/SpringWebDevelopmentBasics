@@ -1,16 +1,17 @@
 package ru.geekbrains;
 
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("productRepository")
 public class ProductRepository {
 
     @Getter
-    List<Product> productList;
+    private List<Product> productList;
 
     @Getter
     private final int LIST_START_QTY = 5;
@@ -37,4 +38,5 @@ public class ProductRepository {
             System.out.println(p.toString());
         }
     }
+
 }
