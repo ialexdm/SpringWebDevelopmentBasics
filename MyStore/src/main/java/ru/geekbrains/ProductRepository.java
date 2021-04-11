@@ -17,9 +17,7 @@ public class ProductRepository {
 
     public ProductRepository(){
         productList = new ArrayList<>();
-
     }
-
     public void setProduct(Product product){
         productList.add(product);
     }

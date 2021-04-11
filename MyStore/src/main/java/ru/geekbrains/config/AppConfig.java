@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import ru.geekbrains.Cart;
 import ru.geekbrains.Product;
 import ru.geekbrains.ProductRepository;
 
@@ -29,6 +30,15 @@ public class AppConfig {
         productRepository.setProduct(new Product("Bed"));
         productRepository.setProduct(new Product("Rack"));
         return productRepository;
+    }
+
+    @Bean(name = "cart")
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    public Cart cart(){
+        Cart cart = new Cart();
+        ProductRepository productRepository = new ProductRepository();
+        cart.setProductRepository(productRepository);
+        return cart;
     }
 
 
