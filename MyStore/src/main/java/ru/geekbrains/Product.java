@@ -14,25 +14,62 @@ import java.util.Random;
 public class Product {
     public static int count;
     public Product(){
-        Random random = new Random(100);
+        double random = Math.round(Math.random()*10000);
         this.id = count++;
         this.title = "Product "+ id;
-        this.cost = (double) Math.round(random.nextDouble()*100)/100;
+        this.cost = (double) random/100;
     }
     public Product(String title){
         this.id = count++;
         this.title = title;
-        Random random = new Random(100);
-        this.cost = (double) Math.round(random.nextDouble()*100)/100;
+        double random = Math.round(Math.random()*10000);
+        this.cost = (double) random/100;
     }
 
-    @Getter
-    @Setter
     private Integer id;
-    @Getter
-    @Setter
+
     private String title;
-    @Getter
-    @Setter
+
     private double cost;
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Product.count = count;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 }

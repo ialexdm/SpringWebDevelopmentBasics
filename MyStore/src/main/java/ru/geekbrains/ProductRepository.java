@@ -33,4 +33,10 @@ public class ProductRepository {
         }
         return null;
     }
+    public void printProducts(){
+        for (Product p:productList
+        ) {
+            System.out.println(p.toString());
+        }
+    }
 }
