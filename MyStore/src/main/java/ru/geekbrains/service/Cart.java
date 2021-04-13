@@ -1,16 +1,17 @@
-package ru.geekbrains;
+package ru.geekbrains.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import ru.geekbrains.model.entity.Product;
+import ru.geekbrains.model.repository.ProductRepository;
+
 
 import java.util.LinkedList;
 import java.util.List;
 
-@Component("cart")
+@Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-
 public class Cart {
 
     private List<Product> products;
@@ -33,7 +34,7 @@ public class Cart {
     public Product getProductById(int id){
         for (Product p:products
         ) {
-            if (p.getId().equals(id)){
+            if (p.getId()==id){
                 return p;
             }
         }
@@ -52,7 +53,7 @@ public class Cart {
     public void removeProduct(int id){
         for (Product p:products
              ) {
-            if (p.getId().equals(id)){
+            if (p.getId()==id){
                 products.remove(p);
             }
             else
@@ -61,21 +62,4 @@ public class Cart {
 
     }
 
-
-    public boolean isCartOpen() {
-        return isCartOpen;
-    }
-
-    public void setCartOpen(boolean cartOpen) {
-        isCartOpen = cartOpen;
-    }
-
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }
