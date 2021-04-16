@@ -15,8 +15,8 @@ public class StoreManagerImpl implements StoreManager {
 
     private final ProductRepository productRepository;
     private final CartService cartService;
-    int userInput;
-    Cart cart;
+    private int userInput;
+    private Cart cart;
 
 
     public StoreManagerImpl(ProductRepository productRepository, CartService cartService) {
@@ -49,56 +49,99 @@ public class StoreManagerImpl implements StoreManager {
                     if (userInput == -1){
                         System.out.println("Завершение покупки. [1]оплатить[2]отмена[3]создать новую корзину[4]выход");
                         userInput = Integer.parseInt(commandReader.readLine());
-                        if (userInput == 3){
-                            cart = cartService.getNewCart();
-                            showProducts();
-                        }
-                        if (userInput == 1){
-                            System.out.println("Спасибо за покупку!Создать новую корзину?[1]да[2]нет");
-                            userInput = Integer.parseInt(commandReader.readLine());
-                            if (userInput == 1){
+
+                        switch (userInput){
+                            case 3:{
                                 cart = cartService.getNewCart();
                                 showProducts();
+                                break;
                             }
-                            if (userInput == 2){
+                            case 1:{
+                                System.out.println("Спасибо за покупку!Создать новую корзину?[1]да[2]нет");
+                                userInput = Integer.parseInt(commandReader.readLine());
+                                switch (userInput){
+                                    case 1:{
+                                        cart = cartService.getNewCart();
+                                        showProducts();
+                                        break;
+                                    }
+                                    case 2:{
+                                        finish();
+                                        return;
+                                    }
+                                    default:{
+                                        wrongInput();
+                                        break;
+                                    }
+                                }
+
+                            }
+                            case 2:{
+                                showProducts();
+                                break;
+                            }
+                            case 4:{
                                 finish();
                                 return;
                             }
+                            default:{
+                                wrongInput();
+                                break;
+                            }
+
                         }
-                        if (userInput == 2){
-                            showProducts();
-                        }
-                        if (userInput == 4){
-                            finish();
-                            return;
-                        }
+                    }else {
+                        System.out.println("ошибка ввода");
+                        showProducts();
                     }
                     if (cart.getProductById(id)!=null){
                         System.out.println("Товар уже есть в корзине...[1]Добавить[2]Отмена[3]Удалить");
                         userInput = Integer.parseInt(commandReader.readLine());
-                        if (userInput == 3){
-                            cart.removeProduct(id);
-                            showProducts();
+                        switch (userInput){
+                            case 3:{
+                                cart.removeProduct(id);
+                                showProducts();
+                                break;
 
+                            }
+                            case 1:{
+                                cart.putProduct(productRepository,id);
+                                showProducts();
+                                break;
+                            }
+                            case 2:{
+                                showProducts();
+                                break;
+                            }
+                            default:{
+                                wrongInput();
+                                break;
+                            }
                         }
-                        if (userInput == 1){
-                            cart.putProduct(productRepository,id);
-                            showProducts();
-                        }
-                        if (userInput == 2){
-                            showProducts();
-                        }
+
                     }else {
                         if (productRepository.getProductById(id)!= null){
                             System.out.println("Добавить в корзину?...[1]Добавить[2]Отмена");
                             userInput = Integer.parseInt(commandReader.readLine());
-                            if (userInput == 1){
-                                cart.putProduct(productRepository,id);
-                                showProducts();
+                            switch (userInput){
+                                case 1: {
+                                    cart.putProduct(productRepository,id);
+                                    showProducts();
+                                    break;
+                                }
+                                case 2: {
+                                    showProducts();
+                                    break;
+                                }
+                                default:{
+                                    wrongInput();
+                                    break;
+                                }
                             }
-                            if (userInput == 2){
-                                showProducts();
-                            }
+
+                        }else {
+                            System.out.println("Товар не найден");
+                            showProducts();
                         }
                     }
                 }
@@ -112,5 +155,10 @@ public class StoreManagerImpl implements StoreManager {
     private void finish(){
         System.out.println("До свидания!");
         System.out.println("Магазин отключен...");
+    }
+
+    private void wrongInput(){
+            System.out.println("ошибка ввода");
+            showProducts();
     }
 }
