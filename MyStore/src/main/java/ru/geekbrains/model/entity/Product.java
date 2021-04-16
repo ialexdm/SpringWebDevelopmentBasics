@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-@Component
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+
 public class Product {
     public static int count;
 
