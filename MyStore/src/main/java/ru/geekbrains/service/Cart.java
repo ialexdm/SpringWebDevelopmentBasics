@@ -14,25 +14,22 @@ import java.util.List;
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class Cart {
 
-    private List<Product> products;
+    final private List<Product> PRODUCTS = new LinkedList<>();
     private boolean isCartOpen = true;
 
-    public Cart(){
-        products = new LinkedList<>();
-    }
 
     public void printCart(){
-        if (products.isEmpty()){
+        if (PRODUCTS.isEmpty()){
             System.out.println("Ваша корзина пуста!");
             return;
         }
-        for (Product p: products
+        for (Product p: PRODUCTS
              ) {
             System.out.println(p.toString());
         }
     }
     public Product getProductById(int id){
-        for (Product p:products
+        for (Product p: PRODUCTS
         ) {
             if (p.getId()==id){
                 return p;
@@ -44,17 +41,17 @@ public class Cart {
     public void putProduct(ProductRepository productRepository, int id){
         Product product = productRepository.getProductById(id);
         if (product!=null){
-            products.add(product);
+            PRODUCTS.add(product);
         }
         else {
             System.out.println("Неверный id!");
         }
     }
     public void removeProduct(int id){
-        for (Product p:products
+        for (Product p: PRODUCTS
              ) {
             if (p.getId()==id){
-                products.remove(p);
+                PRODUCTS.remove(p);
             }
             else
                 System.out.println("Неверный id!");
