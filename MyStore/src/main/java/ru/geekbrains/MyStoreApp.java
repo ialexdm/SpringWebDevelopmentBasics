@@ -12,15 +12,15 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class MyStoreApp {
-   private final StoreManager storeManager;
+   private final StoreManager STORE_MANAGER;
 
     public MyStoreApp(StoreManager storeManager) {
-        this.storeManager = storeManager;
+        this.STORE_MANAGER = storeManager;
     }
 
     @PostConstruct
     public void start(){
-        storeManager.start();
+        STORE_MANAGER.start();
     }
 
     public static void main(String[] args) {
