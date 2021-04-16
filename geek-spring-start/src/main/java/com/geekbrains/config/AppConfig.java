@@ -15,7 +15,11 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @ComponentScan("com.geekbrains")
 public class AppConfig implements WebMvcConfigurer {
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {       registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+                registry.addResourceHandler("/styles/**").addResourceLocations("/styles/");
     }
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
