@@ -2,3 +2,39 @@
 /MyStore/target/
 /geek-spring-start/.idea
 /geek-spring-start/target/
+/geek-spring-boot/.idea
+/geek-spring-boot/target/
+
+/geek-spring-boot/HELP.md
+/geek-spring-boot/!.mvn/wrapper/maven-wrapper.jar
+/geek-spring-boot/!**/src/main/**/target/
+/geek-spring-boot/!**/src/test/**/target/
+
+### STS ###
+/geek-spring-boot/.apt_generated
+/geek-spring-boot/.classpath
+/geek-spring-boot/.factorypath
+/geek-spring-boot/.project
+/geek-spring-boot/.settings
+/geek-spring-boot/.springBeans
+/geek-spring-boot/.sts4-cache
+
+### IntelliJ IDEA ###
+/geek-spring-boot/.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/geek-spring-boot//nbproject/private/
+/geek-spring-boot//nbbuild/
+/geek-spring-boot//dist/
+/geek-spring-boot//nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+/geek-spring-boot/.vscode/
+geek-spring-boot/geek-spring-start/.mvn
