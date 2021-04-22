@@ -1,65 +1,81 @@
 package com.geekbrains.geekspringstart.model.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Product;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import java.util.*;
 
-@Component
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final Map<Integer, Product> db = new HashMap<>();
+    private final EntityManager entityManager;
 
-    {
-        Product egg = new Product();
-        egg.setId(Product.count++);
-        egg.setTitle("Egg");
-        egg.setCost(80);
-        db.put(egg.getId(),egg);
-        Product milk = new Product();
-        milk.setId(Product.count++);
-        milk.setTitle("Milk");
-        milk.setCost(50);
-        db.put(milk.getId(),milk);
-        Product meat = new Product();
-        meat.setId(Product.count++);
-        meat.setTitle("Meat");
-        meat.setCost(340);
-        db.put(meat.getId(),meat);
-        Product bread = new Product();
-        bread.setId(Product.count++);
-        bread.setTitle("Bread");
-        bread.setCost(50);
-        db.put(bread.getId(),bread);
-        Product apple = new Product();
-        apple.setId(Product.count++);
-        apple.setTitle("Apple");
-        apple.setCost(94);
-        db.put(apple.getId(),apple);
-    }
-    @Override
-    public void add(Product product){
-        db.put(product.getId(), product);
+    public ProductRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
-    public Product getProductById(int id){
-        return db.get(id);
-    }
-
-    @Override
-    public void printProducts() {
-        Iterator<Map.Entry<Integer, Product>> iterator = db.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<Integer, Product> productEntry = iterator.next();
-            System.out.println(productEntry.getValue());
+    public Product saveOrUpdate(Product newProduct){
+        List<Product> productList;
+        productList = findAll();
+        Product product = null;
+        for (Product p:productList
+             ) {
+            if (p.getTitle().equals(newProduct.getTitle())){
+                product = p;
+            }
         }
+        if (product!=null){
+            return update(product, newProduct.getCost());
+        }
+
+
+        return save(newProduct);
+    }
+    private Product update(Product product,int newCost){
+        product.setCost(newCost);
+        entityManager.getTransaction().begin();
+        entityManager.merge(product);
+        entityManager.getTransaction().commit();
+        return product;
+    }
+
+    private Product save(Product product){
+        entityManager.getTransaction().begin();
+        entityManager.persist(product);
+        entityManager.getTransaction().commit();
+        return product;
+    }
+
+    @Override
+    public Product findById(long id){
+        return entityManager
+                .createNamedQuery(
+                        "Product.findById", Product.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
     @Override
-    public Map<Integer, Product> getDb() {
-        return db;
+    public Product findByTitle(String title){
+        return entityManager
+                .createNamedQuery(
+                        "Product.findByTitle", Product.class)
+                .setParameter("title", title)
+                .getSingleResult();
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return entityManager.createNamedQuery("Product.findAll", Product.class).getResultList();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        entityManager
+                .createNamedQuery("Product.deleteById", Product.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 }

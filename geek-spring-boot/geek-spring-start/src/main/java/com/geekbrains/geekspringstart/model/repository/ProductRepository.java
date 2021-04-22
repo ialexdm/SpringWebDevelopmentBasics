@@ -3,14 +3,17 @@ package com.geekbrains.geekspringstart.model.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Product;
 
-import java.util.Map;
+import java.util.List;
 
 public interface ProductRepository {
-    void add(Product product);
 
-    Product getProductById(int id);
+    Product findById(long id);
 
-    void printProducts();
+    Product findByTitle(String title);
 
-    Map<Integer, Product> getDb();
+    List<Product> findAll();
+
+    void deleteById(Long id);
+
+    Product saveOrUpdate(Product product);
 }

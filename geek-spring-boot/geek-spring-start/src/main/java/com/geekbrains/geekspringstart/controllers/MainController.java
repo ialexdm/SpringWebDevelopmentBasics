@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.MessageFormat;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 @Controller
@@ -48,7 +46,7 @@ public class MainController {
 
     @PostMapping(value ="add")
     public String create(Product product) {
-        productRepository.add(product);
+        productRepository.saveOrUpdate(product);
         return "redirect:add";
     }
 
@@ -58,15 +56,9 @@ public class MainController {
         ResourceBundle bundle = ResourceBundle.getBundle("patterns") ;
         String card = bundle.getString("card");
         StringBuilder cards = new StringBuilder();
-        Iterator<Map.Entry<Integer, Product>>
-                iterator = productRepository
-                .getDb()
-                .entrySet()
-                .iterator();
-        while(iterator.hasNext()){
-            Product product = iterator.next().getValue();
-            cards.append(MessageFormat.format(card,product.getTitle(), product.getId(), product.getCost()));
-
+        for (Product p: productRepository.findAll())
+        {
+            cards.append(MessageFormat.format(card,p.getTitle(), p.getId(), p.getCost()));
         }
         return cards.toString();
     }
