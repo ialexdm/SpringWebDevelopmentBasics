@@ -1,20 +1,21 @@
 package com.geekbrains.geekspringstart.model.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Product;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 
-import javax.persistence.EntityManager;
 import java.util.*;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final EntityManager entityManager;
+    private final Session entityManager;
 
-    public ProductRepositoryImpl(EntityManager entityManager) {
+    public ProductRepositoryImpl(Session entityManager) {
         this.entityManager = entityManager;
     }
+
 
     @Override
     public Product saveOrUpdate(Product newProduct){
