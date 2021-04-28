@@ -16,5 +16,6 @@
 
         <mapping class="com.geekbrains.geekspringstart.model.entity.Product"/>
         <mapping class="com.geekbrains.geekspringstart.model.entity.Customer"/>
+        <mapping class="com.geekbrains.geekspringstart.model.entity.Order"/>
     </session-factory>
 </hibernate-configuration>

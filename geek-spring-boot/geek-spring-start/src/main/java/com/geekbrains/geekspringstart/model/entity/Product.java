@@ -1,6 +1,8 @@
 package com.geekbrains.geekspringstart.model.entity;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -21,7 +23,11 @@ public class Product {
     @Column(name = "cost")
     private int cost;
 
-    public Product() {
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orderList;
+
+    {
+        orderList = new LinkedList<>();
     }
 
     public long getId() {
@@ -43,6 +49,10 @@ public class Product {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
     }
 
     @Override
