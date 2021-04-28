@@ -1,11 +1,9 @@
-package com.geekbrains.geekspringstart.model.repository;
+package com.geekbrains.geekspringstart.model.dao.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Customer;
-import com.geekbrains.geekspringstart.model.entity.Product;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -25,9 +23,11 @@ public class CustomerRepositoryImpl implements CustomerRepository{
                 .setParameter("id", id)
                 .getSingleResult();
     }
+    @Override
     public List<Customer> findAll(){
         return entityManager.createNamedQuery("Customer.findAll", Customer.class).getResultList();
     }
+    @Override
     public void save(Customer customer){
         entityManager.beginTransaction();
         entityManager.saveOrUpdate(customer);

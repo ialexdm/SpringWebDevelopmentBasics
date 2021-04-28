@@ -1,7 +1,7 @@
 package com.geekbrains.geekspringstart.controllers;
 
 import com.geekbrains.geekspringstart.model.entity.Product;
-import com.geekbrains.geekspringstart.model.repository.ProductRepository;
+import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

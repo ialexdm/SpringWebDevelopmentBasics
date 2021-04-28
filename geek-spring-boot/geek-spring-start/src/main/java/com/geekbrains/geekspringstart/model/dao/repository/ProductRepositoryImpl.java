@@ -1,4 +1,4 @@
-package com.geekbrains.geekspringstart.model.repository;
+package com.geekbrains.geekspringstart.model.dao.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Product;
 import org.hibernate.Session;
