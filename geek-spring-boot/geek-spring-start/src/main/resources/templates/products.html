@@ -22,6 +22,13 @@
         <div class="container center__container">
             <div class="main__content">
                 <h2 class="heading">Products:</h2>
+                <form class="add__form card card__item" th:action="@{/products}" th:object="${product}" method="post">
+                    <input placeholder="Title" class="text__field" type="text" th:field="*{title}" />
+                    <br>
+                    <input placeholder="Cost" class="text__field" type="text" th:field="*{cost}" />
+                    <br>
+                    <button class="add__button" type="submit">Add</button>
+                </form>
                 <div th:utext=${cards} class="card__box"></div>
             </div>
         </div>
