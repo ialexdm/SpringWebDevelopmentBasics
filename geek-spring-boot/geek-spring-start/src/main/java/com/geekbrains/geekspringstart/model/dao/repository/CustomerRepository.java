@@ -1,14 +1,10 @@
 package com.geekbrains.geekspringstart.model.dao.repository;
 
 import com.geekbrains.geekspringstart.model.entity.Customer;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 
-public interface CustomerRepository {
 
-    Customer findById(long id);
+public interface CustomerRepository extends CrudRepository<Customer,Long> {
 
-    List<Customer> findAll();
-
-    void save(Customer customer);
 }
