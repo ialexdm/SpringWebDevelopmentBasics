@@ -6,12 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-@NamedQueries({
-        @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
-        @NamedQuery(name = "Product.deleteById", query = "DELETE FROM Product p WHERE p.id = :id"),
-        @NamedQuery(name = "Product.findByTitle", query = "SELECT p FROM Product p WHERE p.title = :title")
-})
 public class Product {
 
     @Id
