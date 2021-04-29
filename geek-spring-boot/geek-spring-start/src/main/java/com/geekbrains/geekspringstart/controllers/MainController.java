@@ -5,9 +5,7 @@ import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
@@ -30,25 +28,41 @@ public class MainController {
             return "index";
         }
 
+//получение всех товаров [ GET .../app/products ]
     @GetMapping(value = "products")
     public String products(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
         model.addAttribute("cards", generateProductList());
         return "products";
     }
-
-
-    @GetMapping(value ="add")
-    public String add(Model model){
-        Product product = new Product();
-        model.addAttribute("product", product);
-        return "add";
+    //получение товара по id [ GET .../app/products/{id} ]
+    @GetMapping(value="products/{id}")
+    public String product(Model model, @PathVariable(value = "id") String id) {
+        System.out.println(id);
+        Product product = productRepository.findById(Long.parseLong(id)).get();
+        model.addAttribute("id", " #id:"+product.getId());
+        model.addAttribute("title", product.getTitle());
+        model.addAttribute("cost", product.getCost()+"RUB");
+        return "id"; //TODO HTML Form
     }
 
-    @PostMapping(value ="add")
+//создание нового товара [ POST .../app/products ]
+    @PostMapping(value ="products")
     public String create(Product product) {
-        productRepository.saveOrUpdate(product);
-        return "redirect:add";
+        productRepository.save(product);
+        return "redirect:products";
     }
+    //удаление товара по id.[ GET .../app/products/delete/{id} ]удаление товара по id.[ GET .../app/products/delete/{id} ]
+    @GetMapping(value = "products/delete/{id}")
+    public String deleteProducts(Model model, @PathVariable(value = "id") String id) {
+        productRepository.deleteById(Long.parseLong(id));
+        return "redirect:/products";//TODO HTML form
+    }
+
+
+
+
 
 
     public String generateProductList(){
@@ -60,6 +74,15 @@ public class MainController {
         {
             cards.append(MessageFormat.format(card,p.getTitle(), p.getId(), p.getCost()));
         }
+        return cards.toString();
+    }
+
+    public String generateProductCard(Long id){
+        ResourceBundle bundle = ResourceBundle.getBundle("patterns") ;
+        String card = bundle.getString("card");
+        StringBuilder cards = new StringBuilder();
+        Product p = productRepository.findById(id).get();
+        cards.append(MessageFormat.format(card,p.getTitle(), p.getId(), p.getCost()));
         return cards.toString();
     }
 
