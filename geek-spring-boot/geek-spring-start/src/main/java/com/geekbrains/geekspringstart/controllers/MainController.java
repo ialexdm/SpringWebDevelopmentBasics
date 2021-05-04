@@ -31,9 +31,10 @@ public class MainController {
 //получение всех товаров [ GET .../app/products ]
     @GetMapping(value = "products")
     public String products(Model model) {
+
         Product product = new Product();
         model.addAttribute("product", product);
-        model.addAttribute("cards", generateProductList());
+        model.addAttribute("products", productRepository.findAll());
         return "products";
     }
     //получение товара по id [ GET .../app/products/{id} ]
@@ -44,7 +45,7 @@ public class MainController {
         model.addAttribute("id", " #id:"+product.getId());
         model.addAttribute("title", product.getTitle());
         model.addAttribute("cost", product.getCost()+"RUB");
-        return "id"; //TODO HTML Form
+        return "id";
     }
 
 //создание нового товара [ POST .../app/products ]
@@ -57,14 +58,14 @@ public class MainController {
     @GetMapping(value = "products/delete/{id}")
     public String deleteProducts(Model model, @PathVariable(value = "id") String id) {
         productRepository.deleteById(Long.parseLong(id));
-        return "redirect:/products";//TODO HTML form
+        return "redirect:/products";
     }
 
 
 
 
 
-
+/*
     public String generateProductList(){
 
         ResourceBundle bundle = ResourceBundle.getBundle("patterns") ;
@@ -76,7 +77,8 @@ public class MainController {
         }
         return cards.toString();
     }
-
+    */
+/*
     public String generateProductCard(Long id){
         ResourceBundle bundle = ResourceBundle.getBundle("patterns") ;
         String card = bundle.getString("card");
@@ -85,5 +87,5 @@ public class MainController {
         cards.append(MessageFormat.format(card,p.getTitle(), p.getId(), p.getCost()));
         return cards.toString();
     }
-
+*/
 }
