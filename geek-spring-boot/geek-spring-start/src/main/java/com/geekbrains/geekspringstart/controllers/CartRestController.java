@@ -19,13 +19,11 @@ public class CartRestController {
     }
 
     @GetMapping
-    @ResponseBody
     public Map<Product, Integer> content() {
         return cart.getContent();
     }
 
     @DeleteMapping("{id}")
-    @ResponseBody
     public int deleteProduct(@PathVariable Long id) {
         cart.deleteProduct(id);
         return HttpStatus.OK.value();

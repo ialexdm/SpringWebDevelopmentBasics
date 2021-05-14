@@ -11,7 +11,7 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class MainController {
 
     private final ProductRepository productRepository;

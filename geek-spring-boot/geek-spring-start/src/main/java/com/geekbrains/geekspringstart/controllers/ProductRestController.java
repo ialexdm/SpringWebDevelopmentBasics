@@ -22,13 +22,11 @@ public class ProductRestController {
 
 
     @GetMapping("/{id}")
-    @ResponseBody
     public Product getProductById(@PathVariable Long id) {
         return productRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @GetMapping
-    @ResponseBody
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
@@ -36,11 +34,6 @@ public class ProductRestController {
     @PostMapping
     public Product addProduct(@RequestBody Product product) {
 
-        return productRepository.save(product);
-    }
-
-    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public Product updateProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
