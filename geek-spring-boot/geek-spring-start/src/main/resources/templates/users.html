@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStore</title>
+    <link href="../static/css/Layout.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<ul class="card__box">
+    <th:block th:each="user : ${users}">
+        <li class="card">
+            <div class="card__item">
+                <h3 class="title"><span th:text=${user.username}></span></h3>
+                <h5 class=id >#id:<span th:text=${user.id}></span> </h5>
+                <div class="card__image">
+                    <img src="" alt="img">
+                </div>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum,consequatur!
+                </p>
+
+            </div>
+        </li>
+    </th:block>
+</ul>
+</body>
+</html>
