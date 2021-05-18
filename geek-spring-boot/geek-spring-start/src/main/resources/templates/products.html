@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,7 @@
     <div class="container center__container">
         <div class="main__content">
             <h2 class="heading">Products:</h2>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
             <form class="add__form card card__item" th:action="@{/products}" th:object="${product}" method="post">
                 <input placeholder="Title" class="text__field" type="text" th:field="*{title}" />
                 <br>
@@ -29,6 +30,7 @@
                 <br>
                 <button class="add__button" type="submit">Add</button>
             </form>
+            </div>
             <ul class="card__box">
                 <th:block th:each="product : ${products}">
                     <li class="card">
@@ -41,7 +43,8 @@
                             <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum,consequatur!
                             </p>
                             <h2 class="cost"><span th:text=${product.cost}></span> RUB</h2>
-                            <div ><a th:href="@{'/products/delete/' +${product.id}}">
+
+                            <div sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{'/products/delete/' +${product.id}}">
                                 delete
                             </a></div>
                         </div>
