@@ -1,10 +1,18 @@
 package com.geekbrains.geekspringstart.model.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
+@ToString
 public class Product {
 
     @Id
@@ -15,45 +23,7 @@ public class Product {
     private String title;
     @Column(name = "cost")
     private int cost;
-/*
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orderList;
-
-    {
-        orderList = new LinkedList<>();
-    }
-*/
-    public long getId() {
-        return id;
-    }
 
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-/*
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-*/
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", cost=" + cost +
-                '}';
-    }
 }

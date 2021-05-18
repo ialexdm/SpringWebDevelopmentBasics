@@ -3,6 +3,7 @@ package com.geekbrains.geekspringstart.model.dao.service;
 
 import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import com.geekbrains.geekspringstart.model.entity.Product;
+import lombok.Getter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION,
 proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Getter
 public class Cart {
     private static final AtomicInteger COUNTER = new AtomicInteger(0);
     private final int cartID = COUNTER.incrementAndGet();
@@ -49,13 +51,6 @@ public class Cart {
             }
 
         }
-        return content;
-    }
-
-    public int getCartID() {
-        return cartID;
-    }
-    public Map<Product, Integer> getContent(){
         return content;
     }
 }

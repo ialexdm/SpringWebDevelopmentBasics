@@ -2,6 +2,7 @@ package com.geekbrains.geekspringstart.controllers;
 
 import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import com.geekbrains.geekspringstart.model.entity.Product;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -11,15 +12,10 @@ import java.util.List;
 
 @RequestMapping("/api/v1/products")
 @RestController
+@RequiredArgsConstructor
 public class ProductRestController {
 
     private final ProductRepository productRepository;
-
-    @Autowired
-    public ProductRestController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {

@@ -4,6 +4,7 @@ import com.geekbrains.geekspringstart.model.dao.repository.UserRepository;
 import com.geekbrains.geekspringstart.model.entity.Product;
 import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import com.geekbrains.geekspringstart.model.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -14,17 +15,11 @@ import java.util.Map;
 
 @Controller
 @RequestMapping
+@RequiredArgsConstructor
 public class MainController {
 
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
-
-    @Autowired
-    public MainController(ProductRepository productRepository, UserRepository userRepository) {
-        this.productRepository = productRepository;
-        this.userRepository = userRepository;
-    }
-
 
     @GetMapping
     public String greeting(Map<String, Object> model){

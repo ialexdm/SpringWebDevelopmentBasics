@@ -3,6 +3,7 @@ package com.geekbrains.geekspringstart.controllers;
 import com.geekbrains.geekspringstart.model.dao.repository.UserRepository;
 import com.geekbrains.geekspringstart.model.entity.Role;
 import com.geekbrains.geekspringstart.model.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collections;
 
 @Controller
+@RequiredArgsConstructor
 public class RegistrationController {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     @GetMapping("/registration")
     public String registration(){
