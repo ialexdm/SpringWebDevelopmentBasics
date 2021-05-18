@@ -4,7 +4,6 @@ import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import com.geekbrains.geekspringstart.model.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 

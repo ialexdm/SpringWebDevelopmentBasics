@@ -28,7 +28,7 @@ public class RegistrationController {
             return "registration";
         }
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ROLE_ADMIN));
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
         userRepository.save(user);
         return "redirect:/login";
     }

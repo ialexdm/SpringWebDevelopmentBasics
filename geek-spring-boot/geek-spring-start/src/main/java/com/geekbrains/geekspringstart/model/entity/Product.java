@@ -1,8 +1,7 @@
 package com.geekbrains.geekspringstart.model.entity;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "products")

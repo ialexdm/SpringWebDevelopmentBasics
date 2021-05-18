@@ -37,7 +37,6 @@ public class MainController {
             return "index";
         }
 
-//получение всех товаров [ GET .../app/products ]
     @GetMapping(value = "products")
     public String products(Model model) {
 
@@ -55,7 +54,6 @@ public class MainController {
         return "users";
     }
 
-    //получение товара по id [ GET .../app/products/{id} ]
     @GetMapping(value="products/{id}")
     public String product(Model model, @PathVariable(value = "id") String id) {
         System.out.println(id);
@@ -66,14 +64,13 @@ public class MainController {
         return "id";
     }
 
-//создание нового товара [ POST .../app/products ]
     @Secured({"ROLE_ADMIN"})
     @PostMapping(value ="products")
     public String create(Product product) {
         productRepository.save(product);
         return "redirect:products";
     }
-    //удаление товара по id.[ GET .../app/products/delete/{id} ]удаление товара по id.[ GET .../app/products/delete/{id} ]
+
     @Secured({"ROLE_ADMIN"})
     @GetMapping(value = "products/delete/{id}")
     public String deleteProducts(Model model, @PathVariable(value = "id") String id) {

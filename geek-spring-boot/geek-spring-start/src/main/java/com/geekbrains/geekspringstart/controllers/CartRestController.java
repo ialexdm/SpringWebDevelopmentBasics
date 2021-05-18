@@ -4,7 +4,6 @@ package com.geekbrains.geekspringstart.controllers;
 import com.geekbrains.geekspringstart.model.dao.service.Cart;
 import com.geekbrains.geekspringstart.model.entity.Product;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
