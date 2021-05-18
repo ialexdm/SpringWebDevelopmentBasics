@@ -5,6 +5,7 @@ import com.geekbrains.geekspringstart.model.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +32,14 @@ public class ProductRestController {
         return productRepository.findAll();
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public Product addProduct(@RequestBody Product product) {
 
         return productRepository.save(product);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{id}")
     public int deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
