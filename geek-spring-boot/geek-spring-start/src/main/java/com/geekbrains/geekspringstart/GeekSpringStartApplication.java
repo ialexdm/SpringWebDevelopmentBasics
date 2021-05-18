@@ -1,6 +1,4 @@
 package com.geekbrains.geekspringstart;
-import com.geekbrains.geekspringstart.model.dao.repository.CustomerRepository;
-import com.geekbrains.geekspringstart.model.dao.repository.ProductRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
