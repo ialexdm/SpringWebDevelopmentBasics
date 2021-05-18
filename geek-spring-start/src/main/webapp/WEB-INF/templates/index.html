@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStore</title>
+    <link rel="stylesheet" type="text/css" media="all" href="styles/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container top__container">
+            <div class="top">
+                <div class="header">
+                    <h1 class="main__heading">MyStore</h1>
+                    <h1 th:text="${message}" />
+                </div>
+            </div>
+        </div>
+        <div class="container center__container">
+            <div class="main__content">
+                <h2 class="heading"><a href="products">All Products</a></h2>
+                <h2 class="heading"><a href="add?form">Add new product</a></h2>
+
+            </div>
+        </div>
+        <h2>Spring</h2>
+    </div>
+</body>
+
+</html>
